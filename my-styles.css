@@ -9,6 +9,7 @@ body {
 
 .options {
   margin-left: 20px;
+  margin-bottom: 20px;
 }
 
 .success-msg {
@@ -16,5 +17,4 @@ body {
   color: #dddddd;
   border-radius: 5px;
   margin-top: 30%;
-  position: relative;
 }
