@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="my-styles.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+    <script src="app.js"></script>
+  </head>
+  <body ng-app="surveyApp" ng-controller="mainCtrl">
+    <div class="container">
+      <div class="text-center" ng-show="showSurveyList && surveyList.length">
+        <h2>Pick a Survey</h2>
+        <div class="survey-sel-btn" ng-repeat="survey in surveyList">
+          <a class="btn" href="" ng-click="getSurveyQuestions(survey.id)" title="{{survey.tagline}}">{{survey.title}}</a>
+        </div>
+      </div>
+
+      <div ng-show="!showSurveyList && surveyQuestions.length">
+        <div class="text-center">
+          <h1>{{surveyTitle | uppercase}}</h1>
+          <h2>{{surveyTagline}}</h2>
+        </div>
+        <div class="text-right">
+          <a href="" ng-click="showSurveyList=true; surveyQuestions=[];">List All Surveys</a>
+        </div>
+
+        <form ng-submit="submitSurveyResult()">
+          <div ng-repeat="question in surveyQuestions">
+            <div class="question"> {{$index + 1}}. {{question.title}} </div>
+            <span ng-repeat="option in question.options">
+              <label>
+                <input type="radio" class="options" name="{{question.id}}" ng-model="question.option" value="{{option}}" required> {{option}}
+              </label>
+            </span>
+          </div>
+          <button class="btn btn-primary" ng-disabled="btnDisabled">Submit</button>
+        </form>
+      </div>
+
+      <div ng-show="showSuccessMessage" class="text-center">
+        <p class="success-msg">Thanks for answering the survey!</p>
+        <a href="" ng-click="showSuccessMessage=false;showSurveyList=true;">Take another survey</a>
+      </div>
+    </div>
+  </body>
+</html>
