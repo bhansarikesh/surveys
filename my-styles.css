@@ -2,19 +2,23 @@ body {
   margin-top: 50px;
   background-color: #dddddd;
 }
-
 .question {
   font-size: 20px;
+  margin-top: 20px;
 }
-
+.questions {
+  height: 500px;
+  overflow-y: scroll;  
+}
 .options {
   margin-left: 20px;
-  margin-bottom: 20px;
 }
-
 .success-msg {
   background-color: green;
   color: #dddddd;
   border-radius: 5px;
   margin-top: 30%;
+}
+.required-msg {
+  color: green;
 }
